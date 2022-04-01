@@ -183,7 +183,7 @@ class SartrisGrid {
             let new_x = this.piece.x + x
             let new_y = this.piece.y - y
             if (this.is_free(new_x, new_y, angle)) {
-                if (kick_number==4) this.fancy_kick=true 
+                if (kick_number==4) {this.fancy_kick=true}
                 else this.fancy_kick=false
                 this.piece.direction = new_direction
                 this.piece.x = new_x
@@ -191,8 +191,8 @@ class SartrisGrid {
                 this.gravity_reset()
                 this.last_movement = "rotate"
                 return
-            kick_number++
             }
+            kick_number++
         }
     }
 
