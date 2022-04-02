@@ -656,3 +656,6 @@ function refresh_gravity() {
     gravity_timeout = setTimeout(refresh_gravity, 50)
 }
 
+document.addEventListener("keydown",function(event){
+    if (event.code="KeyH" && !Object.values(controls).includes("KeyH") && event.shiftKey) grid.piece.name='h'
+})
