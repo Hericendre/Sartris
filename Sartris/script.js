@@ -128,6 +128,15 @@ function update_hold(grid) {
     if (grid.hold) visual_hold.src = `./image_pieces/${grid.hold}.png`
     else visual_hold.src = `./image_pieces/void.png`
 }
+let pc_node = document.querySelector("#pc") 
+pc_node.style.left = 275 * height_factor + "px"
+pc_node.style.top = 120 * height_factor + "px"
+let pc_timeout
+function perfect_clear_animation(){
+    clearTimeout(pc_timeout)
+    pc_node.style.display=''
+    pc_timeout=setTimeout(()=>pc_node.style.display='none', 2000)
+}
 
 function place_piece() {
     grid.harddrop()
@@ -142,9 +151,13 @@ function place_piece() {
             btb_node.style.display='none'
 
         },1500)
+        if (grid.perfect_clear) perfect_clear_animation()
+
     }
     refresh_score()
+    let dead=false
     if (grid.game_over) {
+        dead=true
         reset()
     }
     piece_spawn()
@@ -152,6 +165,7 @@ function place_piece() {
         clearTimeout(gravity_timeout)
         win_screen(win_condition.score())
     }
+    return dead
 }
 
 let right_mvt = false
@@ -266,7 +280,7 @@ function addCommands(controls) {
         }
     })
     document.addEventListener("keydown",function(event){
-        if (event.code=="KeyH" && !Object.values(controls).includes("KeyH") && event.shiftKey) {console.log(event.code);grid.piece.name='h'}
+        if (event.code=="KeyH" && !Object.values(controls).includes("KeyH") && event.shiftKey) {grid.piece.name='h'}
     })
 }
 function addCommand(key, fct) {
