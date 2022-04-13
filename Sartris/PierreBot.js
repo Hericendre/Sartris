@@ -156,7 +156,7 @@ function play(bot, delay) {
 document.addEventListener("keydown", function (event) {
     if (event.key == "=") {
         // pierre_timeout = 1;
-        play(pierre,0)
+        play(pierre,333)
     }
 })
 document.addEventListener("keydown", function (event) {
